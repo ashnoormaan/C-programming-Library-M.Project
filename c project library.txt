@@ -1,0 +1,85 @@
+/*Library Management System*/
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct library{
+    char book_name[20];
+    char author[20];
+    int pages;
+    float price;
+};
+int main(){
+    struct library lib[100];
+    char ath_name[30],bk_name[30];
+    /*keeping track of the number of books in the library*/
+    int i,input,count;
+    i=input=count=0;
+    while (input!=5){
+        printf("\n Welcome to the library");
+        /*Getting book information*/
+        printf("\n 1.Add book information");
+        printf("\n 2.Display book information");
+        printf("\n 3. List of all the books of a given author");
+        printf("\n 4.List the count of the book in the library");
+        printf("\n 5.exit");
+
+        /*Entering the book details*/
+        printf("\n\n Enter one of the above\n");
+        scanf("%d", &input);
+
+        /*Processing the input*/
+        switch(input){
+
+            /*Adding a book*/
+            case 1:
+
+            printf("Enter book  name =\n ");
+            scanf("%s",lib[i].book_name);
+
+            printf("Enter author name =\n");
+            scanf("%s", lib[i].author);
+
+            printf("Enter pages = \n");
+            scanf("%d", &lib[i].pages);
+
+            printf("Enter price =\n ");
+            scanf("%lf", lib[i].price);
+            count++;
+
+            break;
+
+            /*Printing the book information*/
+            case 2:
+            printf("You have entered the following information\n");
+            for (i=0; i<count; i++){
+                printf("Book name = %s\n",lib[i].book_name);
+                printf("Author name = %s\n",lib[i].author);
+                printf("Pages = %d\n",lib[i].pages);
+                printf("Price = %f\n",lib[i].price);
+            }
+            break;
+
+            /*Taking author name as input*/
+            case 3:
+            printf("Enter author name");
+            scanf("%s",&ath_name);
+            for(i=0; i<count; i++){
+                if(strcmp(ath_name,lib[i].author)==0)
+                printf("%s\n",lib[i].book_name);
+                printf("%s\n",lib[i].author);
+                printf("%d\n",lib[i].pages);
+                printf("%lf",lib[i].price);
+            }
+            break;
+
+            /*Printing total count*/
+            case 4:
+            printf("\n No. of books in the library: %d",count);
+            break;
+            case 5:
+            exit(0);
+        }
+    }
+    return 0;
+    }
